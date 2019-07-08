@@ -25,4 +25,4 @@ Things you may want to cover:
 
 - ER model:
 
-![image](https://github.com/sankofa92/to-do-task/blob/master/to-do-task%20ERmodel.png)
+![image](https://github.com/sankofa92/to-do-task/blob/master/to-do-task%20ER%20model.png)
