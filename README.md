@@ -21,4 +21,8 @@ Things you may want to cover:
 
 - Deployment instructions
 
-- ... aa
+- ...
+
+- ER model:
+
+![image](https://github.com/sankofa92/to-do-task/blob/master/to-do-task%20ERmodel.png)
