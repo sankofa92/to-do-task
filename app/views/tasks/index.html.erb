@@ -1,0 +1,19 @@
+<h2>Task List</h2>
+<%= link_to 'New Task', new_task_path %>
+
+<div class="task-wrap row">
+  <% @tasks.each do |task| %>
+  <div class="task-item col-xs-12 col-sm-6 col-md-4 col-lg-3 border border-info rounded m-1 p-2 mw-50">
+    <h3><%= task.title %></h3>
+    <p>狀態： <%= task.status %></p>
+    <p>優先權： <%= task.priority %></p>
+    <p>開始時間： <%= task.start_at %></p>
+    <p>結束時間： <%= task.end_at %></p>
+    
+      <%= link_to '查看', task_path(task), class: 'btn btn-outline-secondary' %>
+      <%= link_to '修改', edit_task_path(task), class: 'btn btn-outline-warning' %>
+      <%= link_to '刪除', task_path(task), method: 'delete', data: {confirm: "確定要刪除#{task.title}？"}, class: 'btn btn-outline-danger' %>
+    
+  </div>
+  <% end %>
+</div>

@@ -1,0 +1,8 @@
+<%= simple_form_for task do |form| %>
+  <%= form.input :title %>
+  <%= form.input :start_at %>
+  <%= form.input :end_at %>
+  <%= form.input :priority, placeholder: '(高、中、低)' %>
+  <%= form.input :content %>
+  <%= form.submit '送出', class: 'btn btn-outline-info' %>
+<% end %>
