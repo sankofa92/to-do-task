@@ -36,6 +36,19 @@ class TasksController < ApplicationController
     redirect_to root_path, notice: '刪除成功'
   end
 
+  # status filter
+  def pending
+    @tasks = Task.where("status = ?",'待處理')
+  end
+
+  def doing
+    @tasks = Task.where("status = ?",'進行中')
+  end
+
+  def finish
+    @tasks = Task.where("status = ?",'已完成')
+  end
+
   private
   def find_task
     @task = Task.find_by(id: params[:id])
