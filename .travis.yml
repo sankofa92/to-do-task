@@ -17,9 +17,9 @@ language: ruby
 rvm:
   - 2.6.0
 
-# env:
-#   global:
-#     - PGPORT=5433
+env:
+  global:
+    - PGPORT=5433
 after_success:
   - bundle exec codeclimate-test-reporter
 
