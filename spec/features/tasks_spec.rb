@@ -16,6 +16,12 @@ RSpec.feature "tasks", type: :feature do
     expect(page).to have_content('nnn')
   end
 
+  scenario '刪除任務' do
+    visit root_path
+    
+    expect { click_link '刪除' }.to change(Task, :count).by(-1)
+  end
+
   scenario '設定開始及結束時間' do
     visit edit_task_path(@task)
     select('2019', from: 'task[start_at(1i)]')
