@@ -20,6 +20,8 @@ rvm:
 # env:
 #   global:
 #     - PGPORT=5433
+after_success:
+  - bundle exec codeclimate-test-reporter
 
 script:
   - bundle exec rails db:reset db:setup db:migrate RAILS_ENV=test
