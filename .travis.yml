@@ -24,5 +24,6 @@ after_success:
   - bundle exec codeclimate-test-reporter
 
 script:
-  - bundle exec rails db:reset db:setup db:migrate RAILS_ENV=test
+  # - bundle exec rails db:reset db:setup db:migrate RAILS_ENV=test
+  - bundle exec rails db:migrate RAILS_ENV=test
   - bundle exec rspec
