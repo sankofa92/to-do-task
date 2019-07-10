@@ -2,6 +2,7 @@
   <%= form.input :title %>
   <%= form.input :start_at %>
   <%= form.input :end_at %>
+  <%= form.input :status, placeholder: '(待處理、進行中、已完成)' %>
   <%= form.input :priority, placeholder: '(高、中、低)' %>
   <%= form.input :content %>
   <%= form.submit '送出', class: 'btn btn-outline-info' %>
