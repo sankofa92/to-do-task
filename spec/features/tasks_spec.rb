@@ -10,7 +10,7 @@ RSpec.feature "tasks", type: :feature do
     visit new_task_path
     fill_in 'task[title]', :with => 'new title'
     fill_in 'task[priority]', :with => 'nnn' 
-    click_button '送出'
+    click_button I18n.t('common.submit')
 
     expect(page).to have_content('new title')
     expect(page).to have_content('nnn')
@@ -19,7 +19,7 @@ RSpec.feature "tasks", type: :feature do
   scenario '刪除任務' do
     visit root_path
     
-    expect { click_link '刪除' }.to change(Task, :count).by(-1)
+    expect { click_link I18n.t('common.destroy') }.to change(Task, :count).by(-1)
   end
 
   scenario '設定開始及結束時間' do
@@ -32,7 +32,7 @@ RSpec.feature "tasks", type: :feature do
     select('九月', from: 'task[end_at(2i)]')
     select('21', from: 'task[end_at(3i)]')
 
-    click_button '送出'
+    click_button I18n.t('common.submit')
 
     expect(page).to have_content('2019-07-21')
     expect(page).to have_content('2019-09-21')
@@ -40,20 +40,20 @@ RSpec.feature "tasks", type: :feature do
 
   scenario '設定任務優先順序' do
     visit edit_task_path(@task)
-    fill_in 'task[priority]', with: '高'
+    fill_in 'task[priority]', with: I18n.t('tasks.priority.high')
 
-    click_button '送出'
+    click_button I18n.t('common.submit')
 
-    expect(page).to have_content('高')
+    expect(page).to have_content(I18n.t('tasks.priority.high'))
   end
 
   scenario '設定任務目前的狀態' do
     visit edit_task_path(@task)
-    fill_in 'task[status]', with: '進行中'
+    fill_in 'task[status]', with: I18n.t('tasks.status.doing')
 
-    click_button '送出'
+    click_button I18n.t('common.submit')
 
-    expect(page).to have_content('進行中')
+    expect(page).to have_content(I18n.t('tasks.status.doing'))
   end
 end
 

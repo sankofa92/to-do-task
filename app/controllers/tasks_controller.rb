@@ -4,11 +4,11 @@ class TasksController < ApplicationController
     @tasks = Task.all
 
     if params[:status] == "pending"
-      @tasks = Task.where("status = ?",'待處理')
+      @tasks = Task.where("status = ? OR status = ?", 'pending', '待處理' )
     elsif params[:status] == "doing"
-      @tasks = Task.where("status = ?",'進行中')
+      @tasks = Task.where("status = ? OR status = ?", 'doing', '進行中')
     elsif params[:status] == "finish"
-      @tasks = Task.where("status = ?",'已完成')
+      @tasks = Task.where("status = ? OR status = ?", 'finish', '已完成')
     end
   end
 
