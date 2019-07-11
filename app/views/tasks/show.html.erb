@@ -1,11 +1,11 @@
-<h2>Task Detail</h2>
+<h2><%= t('common.task_detail') %></h2>
 <div class="task-info">
   <h3><%= @task.title %></h3>
-  <p>負責人： </p>
-  <p>開始時間： <%= @task.start_at %></p>
-  <p>結束時間： <%= @task.end_at %></p>
-  <p>狀態：<%= @task.status %></p>
-  <p>優先權：<%= @task.priority %></p>
-  <p>內容： <%= @task.content %></p>
-  <%= link_to '返回', root_path %>
+  <p><%= t('users.name') %>： </p>
+  <p><%= t('tasks.start_at') %>： <%= @task.start_at %></p>
+  <p><%= t('tasks.end_at') %>： <%= @task.end_at %></p>
+  <p><%= t('common.status') %>：<%= @task.status %></p>
+  <p><%= t('common.priority') %>：<%= @task.priority %></p>
+  <p><%= t('tasks.content') %>： <%= @task.content %></p>
+  <%= link_to t('common.back'), root_path %>
 </div>

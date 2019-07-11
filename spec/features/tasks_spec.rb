@@ -25,11 +25,11 @@ RSpec.feature "tasks", type: :feature do
   scenario '設定開始及結束時間' do
     visit edit_task_path(@task)
     select('2019', from: 'task[start_at(1i)]')
-    select('July', from: 'task[start_at(2i)]')
+    select('七月', from: 'task[start_at(2i)]')
     select('21', from: 'task[start_at(3i)]')
 
     select('2019', from: 'task[end_at(1i)]')
-    select('September', from: 'task[end_at(2i)]')
+    select('九月', from: 'task[end_at(2i)]')
     select('21', from: 'task[end_at(3i)]')
 
     click_button '送出'
