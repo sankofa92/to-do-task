@@ -35,7 +35,7 @@ zh-TW:
     content: '任務內容'
     new: '新增任務'
     all: '全部任務'
-    start_at: '開始時間'
+    created_at: '建立時間'
     end_at: '截止時間'
     status:
       pending: '待處理'

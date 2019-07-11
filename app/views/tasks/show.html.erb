@@ -2,7 +2,7 @@
 <div class="task-info">
   <h3><%= @task.title %></h3>
   <p><%= t('users.name') %>： </p>
-  <p><%= t('tasks.start_at') %>： <%= @task.start_at %></p>
+  <p><%= t('tasks.created_at') %>： <%= @task.created_at.to_date %></p>
   <p><%= t('tasks.end_at') %>： <%= @task.end_at %></p>
   <p><%= t('common.status') %>：<%= @task.status %></p>
   <p><%= t('common.priority') %>：<%= @task.priority %></p>

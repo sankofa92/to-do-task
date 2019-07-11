@@ -1,14 +1,14 @@
 class TasksController < ApplicationController
   before_action :find_task, only: [:show, :edit, :update, :destroy]
   def index
-    @tasks = Task.all
+    @tasks = Task.all.order(created_at: :desc)
 
     if params[:status] == "pending"
-      @tasks = Task.where("status = ? OR status = ?", 'pending', '待處理' )
+      @tasks = Task.where("status = ? OR status = ?", 'pending', '待處理' ).order(created_at: :desc)
     elsif params[:status] == "doing"
-      @tasks = Task.where("status = ? OR status = ?", 'doing', '進行中')
+      @tasks = Task.where("status = ? OR status = ?", 'doing', '進行中').order(created_at: :desc)
     elsif params[:status] == "finish"
-      @tasks = Task.where("status = ? OR status = ?", 'finish', '已完成')
+      @tasks = Task.where("status = ? OR status = ?", 'finish', '已完成').order(created_at: :desc)
     end
   end
 

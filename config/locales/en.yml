@@ -34,7 +34,7 @@ en:
     content: 'Task content'
     new: 'New task'
     all: 'All task'
-    start_at: 'Start at'
+    created_at: 'Created at'
     end_at: 'End at'
     status:
       pending: 'pending'
