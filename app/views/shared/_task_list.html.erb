@@ -1,9 +1,10 @@
 <%= link_to t('tasks.new'), new_task_path %>
 
 <%= link_to t('tasks.all'), tasks_path %>
-<%= link_to t('tasks.status.pending'), pending_tasks_path %>
-<%= link_to t('tasks.status.doing'), doing_tasks_path %>
-<%= link_to t('tasks.status.finish'), finish_tasks_path %>
+
+<%= link_to t('tasks.status.pending'), status_tasks_path(status: 'pending'), method: :get %>
+<%= link_to t('tasks.status.doing'), status_tasks_path(status: 'doing'), method: :get %>
+<%= link_to t('tasks.status.finish'), status_tasks_path(status: 'finish'), method: :get %>
 
 <div class="task-wrap row">
   <% tasks.each do |task| %>
