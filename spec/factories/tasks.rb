@@ -5,7 +5,6 @@ FactoryBot.define do
     content { Faker::Lorem.paragraph(4) }
     status { nil }
     priority { nil }
-    start_at { nil }
     end_at { nil }
   end
 end

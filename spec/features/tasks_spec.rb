@@ -1,4 +1,5 @@
 require "rails_helper"
+require 'pry-rails'
 
 RSpec.feature "tasks", type: :feature do
 
@@ -14,19 +15,18 @@ RSpec.feature "tasks", type: :feature do
 
     expect(page).to have_content('new title')
     expect(page).to have_content('nnn')
+    expect(page).to have_text(I18n.t("tasks.notice.create"))
   end
 
   scenario '刪除任務' do
     visit root_path
     
     expect { click_link I18n.t('common.destroy') }.to change(Task, :count).by(-1)
+    expect(page).to have_text(I18n.t("tasks.notice.destroy"))
   end
 
-  scenario '設定開始及結束時間' do
+  scenario '設定截止時間' do
     visit edit_task_path(@task)
-    select('2019', from: 'task[start_at(1i)]')
-    select('七月', from: 'task[start_at(2i)]')
-    select('21', from: 'task[start_at(3i)]')
 
     select('2019', from: 'task[end_at(1i)]')
     select('九月', from: 'task[end_at(2i)]')
@@ -34,8 +34,8 @@ RSpec.feature "tasks", type: :feature do
 
     click_button I18n.t('common.submit')
 
-    expect(page).to have_content('2019-07-21')
     expect(page).to have_content('2019-09-21')
+    expect(page).to have_text(I18n.t("tasks.notice.update"))
   end
 
   scenario '設定任務優先順序' do
@@ -45,6 +45,7 @@ RSpec.feature "tasks", type: :feature do
     click_button I18n.t('common.submit')
 
     expect(page).to have_content(I18n.t('tasks.priority.high'))
+    expect(page).to have_text(I18n.t("tasks.notice.update"))
   end
 
   scenario '設定任務目前的狀態' do
@@ -54,6 +55,16 @@ RSpec.feature "tasks", type: :feature do
     click_button I18n.t('common.submit')
 
     expect(page).to have_content(I18n.t('tasks.status.doing'))
+    expect(page).to have_text(I18n.t("tasks.notice.update"))
+  end
+
+  scenario '任務依建立時間排序' do
+    @new_task = FactoryBot.create(:task)
+    visit root_path
+    tasks = page.all('.task-item')
+    # binding.pry
+    expect(tasks[0]).to have_content(@new_task.title)
+    expect(tasks[1]).to have_content(@task.title)
   end
 end
 
