@@ -3,12 +3,11 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all.order(created_at: :desc)
 
-    if params[:status] == "pending"
-      @tasks = Task.where("status = ? OR status = ?", 'pending', '待處理' ).order(created_at: :desc)
-    elsif params[:status] == "doing"
-      @tasks = Task.where("status = ? OR status = ?", 'doing', '進行中').order(created_at: :desc)
-    elsif params[:status] == "finish"
-      @tasks = Task.where("status = ? OR status = ?", 'finish', '已完成').order(created_at: :desc)
+    # status filter
+    case params[:status]
+      when 'pending'  then @tasks = @tasks.where(status: 'pending').order(created_at: :desc)
+      when 'doing'  then @tasks = @tasks.where(status: 'doing').order(created_at: :desc)
+      when 'finish'  then @tasks = @tasks.where(status: 'finish').order(created_at: :desc)
     end
   end
 
@@ -44,18 +43,6 @@ class TasksController < ApplicationController
     redirect_to root_path, notice: I18n.t('tasks.notice.destroy')
   end
 
-  # status filter
-  # def pending
-  #   @tasks = Task.where("status = ?",'待處理')
-  # end
-
-  # def doing
-  #   @tasks = Task.where("status = ?",'進行中')
-  # end
-
-  # def finish
-  #   @tasks = Task.where("status = ?",'已完成')
-  # end
 
   private
   def find_task

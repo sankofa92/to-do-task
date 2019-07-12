@@ -5,11 +5,9 @@ Rails.application.routes.draw do
   post 'change_locale', to: 'application#change_locale'
 
   resources :tasks do
-    collection do
-      get 'status', to: 'tasks#index'
-      # get :pending
-      # get :doing
-      # get :finish
-    end
+    # collection do
+    #   get 'status', to: 'tasks#index'
+     
+    # end
   end
 end

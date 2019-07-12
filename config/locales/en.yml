@@ -41,9 +41,9 @@ en:
       doing: 'doing'
       finish: 'finish'
     priority:
-      low: 'Low'
-      medium: 'Medium'
-      high: 'High'
+      low: 'low'
+      medium: 'medium'
+      high: 'high'
     placeholder:
       status: '(pending,doing,finish)'
       priority: '(low、medium、high)'
