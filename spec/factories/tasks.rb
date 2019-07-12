@@ -3,8 +3,8 @@ FactoryBot.define do
     # user { nil }
     title { Faker::Artist.name }
     content { Faker::Lorem.paragraph(4) }
-    status { nil }
-    priority { nil }
+    # status { nil }
+    # priority { nil }
     end_at { nil }
   end
 end

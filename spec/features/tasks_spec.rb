@@ -9,12 +9,12 @@ RSpec.feature "tasks", type: :feature do
 
   scenario "新增任務" do
     visit new_task_path
-    fill_in 'task[title]', :with => 'new title'
-    fill_in 'task[priority]', :with => 'nnn' 
+    fill_in 'task[title]', with: 'new title'
+    fill_in 'task[content]', with: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
+    
     click_button I18n.t('common.submit')
 
     expect(page).to have_content('new title')
-    expect(page).to have_content('nnn')
     expect(page).to have_text(I18n.t("tasks.notice.create"))
   end
 
