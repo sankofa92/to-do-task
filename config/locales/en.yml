@@ -25,8 +25,10 @@ en:
       login: 'You are already signed in'
   admin:
     title: 'Admin'
-  tag:
+  tags:
     title: 'Tag'
+    error:
+      sort: 'Sort already exist'
   tasks:
     order: 'Choose the sort you want'
     titles: 'To Do task'
@@ -56,6 +58,9 @@ en:
       update: 'Task was failed to update!'
       destroy: 'Task was deleted!'
       permit: 'Not allow!'
+    error:
+      title: "Title can't be blank！"
+      content: "Content can't be blank！"
   users:
     new: 'New user'
     signup: 'Sign Up'
@@ -81,6 +86,10 @@ en:
   activerecord:
     errors:
       models:
+        tag:
+          attributes:
+            sort:
+              uniqueness: 'Already existed！'
         task:
           attributes:
             title:

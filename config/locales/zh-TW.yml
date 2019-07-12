@@ -26,8 +26,10 @@ zh-TW:
       login: '你已經登入了！'
   admin:
     title: '管理'
-  tag:
+  tags:
     title: '標籤'
+    error:
+      sort: '標籤種類不能重複'
   tasks:
     order: '選擇你要的排序'
     titles: '待辦任務'
@@ -57,6 +59,9 @@ zh-TW:
       create: '新增任務失敗！'
       destroy: '任務已刪除！'
       permit: '不允許進入此頁!'
+    error:
+      title: '標題不能空白！'
+      content: '內文不能空白！'
   users:
     new: '新增使用者'
     signup: '註冊'
@@ -79,9 +84,23 @@ zh-TW:
       create: '新增使用者失敗！'
       destroy: '使用者已刪除！'
       login: '信箱或密碼錯誤！'
+    error:
+      name: '名稱不能空白！'
+      email:
+        blank: '電子信箱不能空白！'
+        invalid: '電子信箱是無效的！'
+      password:
+        blank: '密碼不能空白！'
+        too_short: '密碼過短（最少需6個字）！'
+        password_confirmation:
+          confirmation: '密碼兩次輸入須一致！'
   activerecord:
     errors:
       models:
+        tag:
+          attributes:
+            sort:
+              uniqueness: '標籤已存在！'
         task:
           attributes:
             title:

@@ -5,9 +5,9 @@ class TasksController < ApplicationController
 
     # status filter
     case params[:status]
-      when 'pending'  then @tasks = @tasks.where(status: 'pending').order(created_at: :desc)
-      when 'doing'  then @tasks = @tasks.where(status: 'doing').order(created_at: :desc)
-      when 'finish'  then @tasks = @tasks.where(status: 'finish').order(created_at: :desc)
+      when 'pending'  then @tasks = @tasks.where(status: 'pending')
+      when 'doing'  then @tasks = @tasks.where(status: 'doing')
+      when 'finish'  then @tasks = @tasks.where(status: 'finish')
     end
   end
 
