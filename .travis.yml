@@ -1,14 +1,8 @@
 addons:
   postgresql: 9.6
-# apt:
-#   packages:
-#     - postgresql-11.3
-#     - postgresql-client-11.3
+
 after_success:
   - bundle exec codeclimate-test-reporter
-
-# services:
-#   - postgresql
 
 before_install:
   - export TZ=Asia/Taipei
@@ -23,12 +17,7 @@ language: ruby
 rvm:
   - 2.6.0
 
-# env:
-#   global:
-#     - PGPORT=5433
-
 script:
-  # - bundle exec rails db:create
   - bundle exec rails db:migrate RAILS_ENV=test
   - bundle exec rspec
 
