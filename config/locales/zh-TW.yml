@@ -29,7 +29,7 @@ zh-TW:
   tags:
     title: '標籤'
     error:
-      sort: '標籤種類不能重複'
+      name: '標籤種類不能重複'
   tasks:
     order: '選擇你要的排序'
     titles: '待辦任務'
@@ -99,7 +99,7 @@ zh-TW:
       models:
         tag:
           attributes:
-            sort:
+            name:
               uniqueness: '標籤已存在！'
         task:
           attributes:

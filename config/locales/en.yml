@@ -28,7 +28,7 @@ en:
   tags:
     title: 'Tag'
     error:
-      sort: 'Sort already exist'
+      name: 'Sort already exist'
   tasks:
     order: 'Choose the sort you want'
     titles: 'To Do task'
@@ -88,7 +88,7 @@ en:
       models:
         tag:
           attributes:
-            sort:
+            name:
               uniqueness: 'Already existed！'
         task:
           attributes:
