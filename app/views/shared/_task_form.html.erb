@@ -1,8 +1,8 @@
 <%= simple_form_for task do |form| %>
-  <%= form.input :title %>
-  <%= form.input :start_at %>
-  <%= form.input :end_at %>
-  <%= form.input :priority, placeholder: '(高、中、低)' %>
-  <%= form.input :content %>
-  <%= form.submit '送出', class: 'btn btn-outline-info' %>
+  <%= form.input :title, label: t('common.title') %>
+  <%= form.input :end_at, label: t('tasks.end_at') %>
+  <%= form.input :status, label: t('common.status'), placeholder: t('tasks.placeholder.status') %>
+  <%= form.input :priority, label: t('common.priority'), placeholder: t('tasks.placeholder.priority') %>
+  <%= form.input :content, label: t('tasks.content') %>
+  <%= form.submit t('common.submit'), class: 'btn btn-outline-info' %>
 <% end %>

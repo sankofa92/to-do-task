@@ -41,8 +41,8 @@ gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
 gem 'aasm', '~> 5.0', '>= 5.0.5'
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
-gem 'faker', '~> 1.9', '>= 1.9.3'
 gem 'paranoia', '~> 2.4', '>= 2.4.2'
+gem 'rails-i18n', '~> 5.1', '>= 5.1.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -52,6 +52,8 @@ group :development, :test do
   gem 'faker', '~> 1.9', '>= 1.9.3'
   gem 'factory_bot_rails', '~> 5.0', '>= 5.0.2'
   gem 'timecop', '~> 0.9.1'
+  gem 'capybara', '~> 3.25'
+  gem 'travis', '~> 1.8', '>= 1.8.10'
 end
 
 group :development do
@@ -65,7 +67,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+  # gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'

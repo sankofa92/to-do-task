@@ -1,33 +1,110 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  common:
+    hi: 'Hi'
+    locale:
+      en: 'English'
+      zh-TW: '中文版'
+    title: 'Title'
+    status: 'Status'
+    edit: 'Edit'
+    destroy: 'Destroy'
+    back: 'Back'
+    submit: 'Submit'
+    priority: 'Priority'
+    task_list: 'Task List'
+    new_task: 'New Task List'
+    pending_task: 'Pending Task List'
+    doing_task: 'Doing Task List'
+    finish_task: 'Finish Task List'
+    edit_task: 'Edit Task'
+    task_detail: 'Task Detail'
+    messages:
+      destroy: 'Are you sure to delete %{task}?'
+    alert:
+      destroy: 'Can not destroy！'
+      login: 'You are already signed in'
+  admin:
+    title: 'Admin'
+  tags:
+    title: 'Tag'
+    error:
+      name: 'Sort already exist'
+  tasks:
+    order: 'Choose the sort you want'
+    titles: 'To Do task'
+    title: 'Task title'
+    content: 'Task content'
+    new: 'New task'
+    all: 'All task'
+    created_at: 'Created at'
+    end_at: 'End at'
+    status:
+      pending: 'pending'
+      doing: 'doing'
+      finish: 'finish'
+    priority:
+      low: 'low'
+      medium: 'medium'
+      high: 'high'
+    placeholder:
+      status: '(pending,doing,finish)'
+      priority: '(low、medium、high)'
+    notice:
+      create: 'Task was successfully created!'
+      update: 'Task was successfully updated!'
+      destroy: 'Task was successfully deleted!'
+    alert:
+      create: 'Task was failed to create!'
+      update: 'Task was failed to update!'
+      destroy: 'Task was deleted!'
+      permit: 'Not allow!'
+    error:
+      title: "Title can't be blank！"
+      content: "Content can't be blank！"
+  users:
+    new: 'New user'
+    signup: 'Sign Up'
+    login: 'Log In'
+    logout: 'Log Out'
+    name: 'Name'
+    email: 'Email'
+    password: 'Password'
+    password_confirmation: 'Password confirmation'
+    tasks_count: 'Tasks count'
+    roles: 'Role'
+    role:
+      admin: 'Admin'
+      normal: 'Normal'
+    notice:
+      create: 'User was successfully created!'
+      update: 'User was successfully updated!'
+    alert:
+      create: 'User was failed to create!'
+      update: 'User was failed to update!'
+      destroy: 'User was deleted!'
+      login: 'Invalid email or password!'
+  activerecord:
+    errors:
+      models:
+        tag:
+          attributes:
+            name:
+              uniqueness: 'Already existed！'
+        task:
+          attributes:
+            title:
+              blank: "Title can't be blank！"
+            content:
+              blank: "Content can't be blank！"
+        user:
+          attributes:
+            name:
+              blank: "Name can't be blank！"
+            email:
+              blank: "Email can't be blank！"
+              invalid: 'Email is invalid！'
+            password:
+              blank: "Password can't be blank！"
+              too_short: 'Password is too short (minimum is 6 characters)！'
+            password_confirmation:
+              confirmation: "Password confirmation doesn't match Password！"
