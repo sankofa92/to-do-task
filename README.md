@@ -23,6 +23,16 @@ Things you may want to cover:
 
 - ...
 
-- ER model:
+## ER model:
 
 ![image](https://github.com/sankofa92/to-do-task/blob/master/to-do-task%20ER%20model.png)
+
+## Deploy
+
+already use PostgreSQL for database
+
+1. Heroku login
+2. heroku create
+3. merge master to present branch
+4. git push heroku master
+5. heroku run rails db:migrate
