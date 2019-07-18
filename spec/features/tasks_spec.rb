@@ -11,7 +11,7 @@ RSpec.feature "tasks", type: :feature do
     visit new_task_path
     fill_in 'task[title]', with: 'new title'
     fill_in 'task[content]', with: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
-    
+
     click_button I18n.t('common.submit')
 
     expect(page).to have_content('new title')
@@ -65,6 +65,24 @@ RSpec.feature "tasks", type: :feature do
     # binding.pry
     expect(tasks[0]).to have_content(@new_task.title)
     expect(tasks[1]).to have_content(@task.title)
+  end
+
+  scenario '任務依截止時間排序' do
+    @earlier_task = FactoryBot.create(:task, end_at: 2.days.from_now)
+    @later_task = FactoryBot.create(:task, end_at: 10.days.from_now)
+    visit root_path
+    click_link I18n.t('tasks.end_at')
+    tasks = page.all('.task-item')
+    # binding.pry
+    expect(tasks[0]).to have_content(@earlier_task.title)
+    expect(tasks[1]).to have_content(@task.title)
+    expect(tasks[2]).to have_content(@later_task.title)
+
+    click_link I18n.t('tasks.end_at')
+    tasks = page.all('.task-item')
+    expect(tasks[0]).to have_content(@later_task.title)
+    expect(tasks[1]).to have_content(@task.title)
+    expect(tasks[2]).to have_content(@earlier_task.title)
   end
 end
 
