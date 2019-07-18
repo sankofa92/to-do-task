@@ -18,6 +18,7 @@ en:
     finish_task: 'Finish Task List'
     edit_task: 'Edit Task'
     task_detail: 'Task Detail'
+    order: 'Order'
     messages:
       destroy: 'Are you sure to delete %{task}?'
     alert:

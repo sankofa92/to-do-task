@@ -6,6 +6,8 @@
 <%= link_to t('tasks.status.doing'), tasks_path(status: 'doing') %>
 <%= link_to t('tasks.status.finish'), tasks_path(status: 'finish') %>
 
+<p><%= t('common.order') %>: <%= sort_link(@q, :end_at, t("tasks.end_at"), default_order: :asc) %></p>
+
 <div class="task-wrap row">
   <% tasks.each do |task| %>
   <div class="task-item col-xs-12 col-sm-6 col-md-4 col-lg-3 border border-info rounded m-1 p-2 mw-50">

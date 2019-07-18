@@ -19,6 +19,7 @@ zh-TW:
     finish_task: '已完成任務'
     edit_task: '編輯任務'
     task_detail: '任務細節'
+    order: '排序'
     messages:
       destroy: '確定要刪除%{task}嗎？'
     alert:

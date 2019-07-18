@@ -1,7 +1,9 @@
 class TasksController < ApplicationController
   before_action :find_task, only: [:show, :edit, :update, :destroy]
   def index
-    @tasks = Task.all.order(created_at: :desc)
+    @q = Task.ransack(params[:q])
+    # @tasks = Task.all.order(created_at: :desc)
+    @tasks = @q.result.all.order(created_at: :desc)
 
     # status filter
     case params[:status]
@@ -9,6 +11,8 @@ class TasksController < ApplicationController
       when 'doing'  then @tasks = @tasks.where(status: 'doing')
       when 'finish'  then @tasks = @tasks.where(status: 'finish')
     end
+
+    
   end
 
   def new
