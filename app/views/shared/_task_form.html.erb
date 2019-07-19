@@ -1,8 +1,6 @@
 <%= simple_form_for task do |form| %>
   <%= form.input :title, label: t('common.title') %>
   <%= form.input :end_at, label: t('tasks.end_at') %>
-  <%= form.label t('common.status') %>
-  <%= form.select :status, options_for_select([['Pending','pending'],['Doing','doing'],['Finish','finish']]) %>
   <%= form.label t('common.priority') %>
   <%= form.select :priority, options_for_select([['Low','low'],['Medium','medium'],['High','high']]) %>
   <%= form.input :content, label: t('tasks.content') %>

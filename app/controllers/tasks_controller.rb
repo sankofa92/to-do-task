@@ -11,8 +11,10 @@ class TasksController < ApplicationController
       when 'doing'  then @tasks = @tasks.where(status: 'doing')
       when 'finish'  then @tasks = @tasks.where(status: 'finish')
     end
+  end
 
-    
+  def search
+    render :index
   end
 
   def new
@@ -65,6 +67,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :start_at, :end_at, :priority, :status)
+    params.require(:task).permit(:title, :content, :end_at, :priority)
   end
 end

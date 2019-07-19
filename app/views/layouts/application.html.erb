@@ -11,6 +11,7 @@
 
   <body>
     <ul class="navbar-nav ml-auto">
+      <li><%= render 'shared/task_search' %></li>
       <li class="nav-link active badge badge-light"><%= link_to t("common.locale.zh-TW"), change_locale_path(locale: "zh-TW"), method: :post %></li>
       <li class="nav-link active badge badge-light"><%= link_to t("common.locale.en"), change_locale_path(locale: "en"), method: :post %></li>
     </ul>

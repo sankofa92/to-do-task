@@ -44,9 +44,9 @@ zh-TW:
     take: '接任務'
     drop: '完成'
     status:
-      pending: 'pending'
-      doing: 'doing'
-      finish: 'finish'
+      pending: '待處理'
+      doing: '進行中'
+      finish: '已完成'
     priority:
       low: 'low'
       medium: 'medium'

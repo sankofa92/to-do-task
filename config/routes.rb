@@ -9,5 +9,8 @@ Rails.application.routes.draw do
       patch :take
       patch :drop
     end
+    collection do
+      get 'search', to: 'tasks#search'
+    end
   end
 end

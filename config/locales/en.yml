@@ -43,9 +43,9 @@ en:
     take: 'Take'
     drop: 'Finish'
     status:
-      pending: 'pending'
-      doing: 'doing'
-      finish: 'finish'
+      pending: 'Pending'
+      doing: 'Doing'
+      finish: 'Finish'
     priority:
       low: 'low'
       medium: 'medium'
