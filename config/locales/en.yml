@@ -21,6 +21,7 @@ en:
     order: 'Order'
     messages:
       destroy: 'Are you sure to delete %{task}?'
+      drop: 'Are you finished %{task}?'
     alert:
       destroy: 'Can not destroy！'
       login: 'You are already signed in'
@@ -38,7 +39,9 @@ en:
     new: 'New task'
     all: 'All task'
     created_at: 'Created at'
-    end_at: 'End at'
+    end_at: 'Deadline'
+    take: 'Take'
+    drop: 'Finish'
     status:
       pending: 'pending'
       doing: 'doing'
@@ -54,6 +57,8 @@ en:
       create: 'Task was successfully created!'
       update: 'Task was successfully updated!'
       destroy: 'Task was successfully deleted!'
+      take: 'Task was successfully took!'
+      drop: 'Task was finished!'
     alert:
       create: 'Task was failed to create!'
       update: 'Task was failed to update!'

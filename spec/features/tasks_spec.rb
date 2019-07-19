@@ -38,25 +38,25 @@ RSpec.feature "tasks", type: :feature do
     expect(page).to have_text(I18n.t("tasks.notice.update"))
   end
 
-  scenario '設定任務優先順序' do
-    visit edit_task_path(@task)
-    fill_in 'task[priority]', with: I18n.t('tasks.priority.high')
+  # scenario '設定任務優先順序' do
+  #   visit edit_task_path(@task)
+  #   fill_in 'task[priority]', with: I18n.t('tasks.priority.high')
 
-    click_button I18n.t('common.submit')
+  #   click_button I18n.t('common.submit')
 
-    expect(page).to have_content(I18n.t('tasks.priority.high'))
-    expect(page).to have_text(I18n.t("tasks.notice.update"))
-  end
+  #   expect(page).to have_content(I18n.t('tasks.priority.high'))
+  #   expect(page).to have_text(I18n.t("tasks.notice.update"))
+  # end
 
-  scenario '設定任務目前的狀態' do
-    visit edit_task_path(@task)
-    fill_in 'task[status]', with: I18n.t('tasks.status.doing')
+  # scenario '設定任務目前的狀態' do
+  #   visit edit_task_path(@task)
+  #   fill_in 'task[status]', with: I18n.t('tasks.status.doing')
 
-    click_button I18n.t('common.submit')
+  #   click_button I18n.t('common.submit')
 
-    expect(page).to have_content(I18n.t('tasks.status.doing'))
-    expect(page).to have_text(I18n.t("tasks.notice.update"))
-  end
+  #   expect(page).to have_content(I18n.t('tasks.status.doing'))
+  #   expect(page).to have_text(I18n.t("tasks.notice.update"))
+  # end
 
   scenario '任務依建立時間排序' do
     @new_task = FactoryBot.create(:task)

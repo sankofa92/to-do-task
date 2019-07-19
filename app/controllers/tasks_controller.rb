@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :find_task, only: [:show, :edit, :update, :destroy]
+  before_action :find_task, only: [:show, :edit, :update, :destroy, :take, :drop]
   def index
     @q = Task.ransack(params[:q])
     # @tasks = Task.all.order(created_at: :desc)
@@ -47,6 +47,17 @@ class TasksController < ApplicationController
     redirect_to root_path, notice: I18n.t('tasks.notice.destroy')
   end
 
+  def take
+    @task.take!
+    redirect_back(fallback_location: root_path, notice: I18n.t('tasks.notice.take'))
+    
+  end
+  
+  def drop
+    @task.drop!
+    redirect_back(fallback_location: root_path, notice: I18n.t('tasks.notice.drop'))
+    
+  end
 
   private
   def find_task
