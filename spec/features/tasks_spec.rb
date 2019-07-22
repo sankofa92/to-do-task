@@ -84,6 +84,23 @@ RSpec.feature "tasks", type: :feature do
     expect(tasks[1]).to have_content(@task.title)
     expect(tasks[2]).to have_content(@earlier_task.title)
   end
+
+  scenario '搜尋任務標題' do
+    visit root_path
+    fill_in 'q[title_cont]', with: @task.title
+    click_button '搜尋'
+    tasks = page.all('.task-item')
+    expect(tasks[0]).to have_content(@task.title)
+  end
+
+  scenario '依任務狀態篩選' do
+    visit root_path
+    click_link I18n.t('tasks.take')
+    click_link I18n.t('tasks.status.doing')
+    tasks = page.all('.task-item')
+    expect(tasks[0]).to have_content(@task.title)
+    expect(tasks[0]).to have_content('doing')
+  end
 end
 
 
