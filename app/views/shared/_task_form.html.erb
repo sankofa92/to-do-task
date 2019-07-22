@@ -2,7 +2,7 @@
   <%= form.input :title, label: t('common.title') %>
   <%= form.input :end_at, label: t('tasks.end_at') %>
   <%= form.label t('common.priority') %>
-  <%= form.select :priority, options_for_select([['Low','low'],['Medium','medium'],['High','high']]) %>
+  <%= form.select :priority, options_for_select([['low','low'],['medium','medium'],['high','high']]) %>
   <%= form.input :content, label: t('tasks.content') %>
   <%= form.submit t('common.submit'), class: 'btn btn-outline-info' %>
 <% end %>

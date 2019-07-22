@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   def index
     @q = Task.ransack(params[:q])
     # @tasks = Task.all.order(created_at: :desc)
-    @tasks = @q.result.all.order(created_at: :desc)
+    @tasks = @q.result.order(created_at: :desc)
 
     # status filter
     case params[:status]

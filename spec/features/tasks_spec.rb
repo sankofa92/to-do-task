@@ -38,15 +38,15 @@ RSpec.feature "tasks", type: :feature do
     expect(page).to have_text(I18n.t("tasks.notice.update"))
   end
 
-  # scenario '設定任務優先順序' do
-  #   visit edit_task_path(@task)
-  #   fill_in 'task[priority]', with: I18n.t('tasks.priority.high')
+  scenario '設定任務優先順序' do
+    visit edit_task_path(@task)
+    select(I18n.t('tasks.priority.high', from: 'task[priority]'))
 
-  #   click_button I18n.t('common.submit')
+    click_button I18n.t('common.submit')
 
-  #   expect(page).to have_content(I18n.t('tasks.priority.high'))
-  #   expect(page).to have_text(I18n.t("tasks.notice.update"))
-  # end
+    expect(page).to have_content(I18n.t('tasks.priority.high'))
+    expect(page).to have_text(I18n.t("tasks.notice.update"))
+  end
 
   # scenario '設定任務目前的狀態' do
   #   visit edit_task_path(@task)
@@ -68,8 +68,8 @@ RSpec.feature "tasks", type: :feature do
   end
 
   scenario '任務依截止時間排序' do
-    @earlier_task = FactoryBot.create(:task, end_at: 2.days.from_now)
-    @later_task = FactoryBot.create(:task, end_at: 10.days.from_now)
+    @earlier_task = FactoryBot.create(:task, :task_earlier)
+    @later_task = FactoryBot.create(:task, :task_later)
     visit root_path
     click_link I18n.t('tasks.end_at')
     tasks = page.all('.task-item')

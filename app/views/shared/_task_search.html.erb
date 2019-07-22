@@ -1,4 +1,4 @@
-<%= search_form_for @q, html: { method: :get } do |form| %>
+<%= search_form_for query, html: { method: :get } do |form| %>
 <%= form.label t('tasks.title') %>
 <%= form.search_field :title_cont %>
 <%= form.submit class: "btn btn-outline-success btn-sm" %>
