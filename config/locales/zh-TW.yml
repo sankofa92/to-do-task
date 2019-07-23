@@ -19,8 +19,10 @@ zh-TW:
     finish_task: '已完成任務'
     edit_task: '編輯任務'
     task_detail: '任務細節'
+    order: '排序'
     messages:
       destroy: '確定要刪除%{task}嗎？'
+      drop: '確定完成%{task}了嗎？'
     alert:
       destroy: '不能刪除！'
       login: '你已經登入了！'
@@ -39,10 +41,12 @@ zh-TW:
     all: '全部任務'
     created_at: '建立時間'
     end_at: '截止時間'
+    take: '接任務'
+    drop: '完成'
     status:
-      pending: 'pending'
-      doing: 'doing'
-      finish: 'finish'
+      pending: '待處理'
+      doing: '進行中'
+      finish: '已完成'
     priority:
       low: 'low'
       medium: 'medium'
@@ -54,6 +58,8 @@ zh-TW:
       update: '成功更新任務！'
       create: '成功新增任務！'
       destroy: '成功刪除任務！'
+      take: '成功接下任務！'
+      drop: '完成任務！'
     alert:
       update: '更新任務失敗！'
       create: '新增任務失敗！'

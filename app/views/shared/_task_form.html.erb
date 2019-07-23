@@ -1,8 +1,8 @@
 <%= simple_form_for task do |form| %>
   <%= form.input :title, label: t('common.title') %>
   <%= form.input :end_at, label: t('tasks.end_at') %>
-  <%= form.input :status, label: t('common.status'), placeholder: t('tasks.placeholder.status') %>
-  <%= form.input :priority, label: t('common.priority'), placeholder: t('tasks.placeholder.priority') %>
+  <%= form.label t('common.priority') %>
+  <%= form.select :priority, options_for_select([['low','low'],['medium','medium'],['high','high']]) %>
   <%= form.input :content, label: t('tasks.content') %>
   <%= form.submit t('common.submit'), class: 'btn btn-outline-info' %>
 <% end %>

@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   post 'change_locale', to: 'application#change_locale'
 
   resources :tasks do
-    # collection do
-    #   get 'status', to: 'tasks#index'
-     
-    # end
+    member do
+      patch :take
+      patch :drop
+    end
+    collection do
+      get 'search', to: 'tasks#search'
+    end
   end
 end

@@ -11,7 +11,7 @@ RSpec.feature "tasks", type: :feature do
     visit new_task_path
     fill_in 'task[title]', with: 'new title'
     fill_in 'task[content]', with: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
-    
+
     click_button I18n.t('common.submit')
 
     expect(page).to have_content('new title')
@@ -40,7 +40,7 @@ RSpec.feature "tasks", type: :feature do
 
   scenario '設定任務優先順序' do
     visit edit_task_path(@task)
-    fill_in 'task[priority]', with: I18n.t('tasks.priority.high')
+    select(I18n.t('tasks.priority.high', from: 'task[priority]'))
 
     click_button I18n.t('common.submit')
 
@@ -48,15 +48,15 @@ RSpec.feature "tasks", type: :feature do
     expect(page).to have_text(I18n.t("tasks.notice.update"))
   end
 
-  scenario '設定任務目前的狀態' do
-    visit edit_task_path(@task)
-    fill_in 'task[status]', with: I18n.t('tasks.status.doing')
+  # scenario '設定任務目前的狀態' do
+  #   visit edit_task_path(@task)
+  #   fill_in 'task[status]', with: I18n.t('tasks.status.doing')
 
-    click_button I18n.t('common.submit')
+  #   click_button I18n.t('common.submit')
 
-    expect(page).to have_content(I18n.t('tasks.status.doing'))
-    expect(page).to have_text(I18n.t("tasks.notice.update"))
-  end
+  #   expect(page).to have_content(I18n.t('tasks.status.doing'))
+  #   expect(page).to have_text(I18n.t("tasks.notice.update"))
+  # end
 
   scenario '任務依建立時間排序' do
     @new_task = FactoryBot.create(:task)
@@ -65,6 +65,41 @@ RSpec.feature "tasks", type: :feature do
     # binding.pry
     expect(tasks[0]).to have_content(@new_task.title)
     expect(tasks[1]).to have_content(@task.title)
+  end
+
+  scenario '任務依截止時間排序' do
+    @earlier_task = FactoryBot.create(:task, :task_earlier)
+    @later_task = FactoryBot.create(:task, :task_later)
+    visit root_path
+    click_link I18n.t('tasks.end_at')
+    tasks = page.all('.task-item')
+    # binding.pry
+    expect(tasks[0]).to have_content(@earlier_task.title)
+    expect(tasks[1]).to have_content(@task.title)
+    expect(tasks[2]).to have_content(@later_task.title)
+
+    click_link I18n.t('tasks.end_at')
+    tasks = page.all('.task-item')
+    expect(tasks[0]).to have_content(@later_task.title)
+    expect(tasks[1]).to have_content(@task.title)
+    expect(tasks[2]).to have_content(@earlier_task.title)
+  end
+
+  scenario '搜尋任務標題' do
+    visit root_path
+    fill_in 'q[title_cont]', with: @task.title
+    click_button '搜尋'
+    tasks = page.all('.task-item')
+    expect(tasks[0]).to have_content(@task.title)
+  end
+
+  scenario '依任務狀態篩選' do
+    visit root_path
+    click_link I18n.t('tasks.take')
+    click_link I18n.t('tasks.status.doing')
+    tasks = page.all('.task-item')
+    expect(tasks[0]).to have_content(@task.title)
+    expect(tasks[0]).to have_content('doing')
   end
 end
 
