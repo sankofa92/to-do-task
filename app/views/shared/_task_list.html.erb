@@ -9,7 +9,7 @@
 <div>
   <%= t('common.order') %>
   <%= sort_link(@q, :end_at, t("tasks.end_at"), default_order: :asc) %>
-  <%= sort_link(@q, :priority, t("common.priority"), default_order: :asc) %>
+  <%= sort_link(@q, :priority, t("common.priority"), default_order: :desc) %>
 </div>
 
 <div class="task-wrap row">
