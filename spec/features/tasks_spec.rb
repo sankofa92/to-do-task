@@ -101,6 +101,24 @@ RSpec.feature "tasks", type: :feature do
     expect(tasks[0]).to have_content(@task.title)
     expect(tasks[0]).to have_content('doing')
   end
+
+  scenario '任務依優先順序排序' do
+    @medium_task = FactoryBot.create(:task, :task_medium)
+    @high_task = FactoryBot.create(:task, :task_high)
+    visit root_path
+    click_link I18n.t('common.priority')
+    tasks = page.all('.task-item')
+    # binding.pry
+    expect(tasks[0]).to have_content(@high_task.title)
+    expect(tasks[1]).to have_content(@medium_task.title)
+    expect(tasks[2]).to have_content(@task.title)
+
+    click_link I18n.t('common.priority')
+    tasks = page.all('.task-item')
+    expect(tasks[0]).to have_content(@task.title)
+    expect(tasks[1]).to have_content(@medium_task.title)
+    expect(tasks[2]).to have_content(@high_task.title)
+  end
 end
 
 
