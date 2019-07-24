@@ -19,6 +19,7 @@ en:
     edit_task: 'Edit Task'
     task_detail: 'Task Detail'
     order: 'Order'
+    filter: 'Filter'
     messages:
       destroy: 'Are you sure to delete %{task}?'
       drop: 'Are you finished %{task}?'
@@ -37,7 +38,7 @@ en:
     title: 'Task title'
     content: 'Task content'
     new: 'New task'
-    all: 'All task'
+    all: 'All'
     created_at: 'Created at'
     end_at: 'Deadline'
     take: 'Take'
