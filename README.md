@@ -25,7 +25,7 @@ Things you may want to cover:
 
 ## ER model:
 
-![image](https://github.com/sankofa92/to-do-task/blob/master/to-do-task%20ER%20model.png)
+![image](https://github.com/sankofa92/to-do-task/blob/1a92833a057ab65b645af80b6250560d3bf47990/to-do-task%20ER%20model.png)
 
 ## Deploy
 
@@ -36,3 +36,4 @@ already use PostgreSQL for database
 3. merge master to present branch
 4. git push heroku master
 5. heroku run rails db:migrate
+6. heroku open
