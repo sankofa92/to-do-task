@@ -20,6 +20,7 @@ zh-TW:
     edit_task: '編輯任務'
     task_detail: '任務細節'
     order: '排序'
+    filter: '篩選'
     messages:
       destroy: '確定要刪除%{task}嗎？'
       drop: '確定完成%{task}了嗎？'
@@ -38,7 +39,7 @@ zh-TW:
     title: '任務標題'
     content: '任務內容'
     new: '新增任務'
-    all: '全部任務'
+    all: '全部'
     created_at: '建立時間'
     end_at: '截止時間'
     take: '接任務'
