@@ -1,9 +1,14 @@
 class TasksController < ApplicationController
   before_action :find_task, only: [:show, :edit, :update, :destroy, :take, :drop]
+
   def index
     @q = Task.ransack(params[:q])
     @tasks = @q.result.order(created_at: :desc).page(params[:page]).per(8)
 
+    if Task.where(user_id = nil)
+      Task.update(user_id: 1)
+    end
+    
     # status filter
     case params[:status]
       when 'pending'  then @tasks = @tasks.where(status: 'pending')
@@ -67,6 +72,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :end_at, :priority)
+    params.require(:task).permit(:title, :content, :end_at, :priority, :user_id)
   end
 end

@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :task do
-    user { 1 }
     title { Faker::Artist.name }
     content { Faker::Lorem.paragraph(4) }
     # priority { 0 }
