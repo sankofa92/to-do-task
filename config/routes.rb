@@ -4,6 +4,13 @@ Rails.application.routes.draw do
   
   post 'change_locale', to: 'application#change_locale'
 
+  get 'signup', to: 'users#new'
+  post 'signup', to: 'users#create'
+  
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  get 'logout', to: 'sessions#destroy'
+
   resources :tasks do
     member do
       patch :take
