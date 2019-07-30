@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Task, type: :model do
 
+  before(:each) do
+    @user = FactoryBot.create(:user)
+  end
+
   it "不能沒有標題及內文" do
     expect(FactoryBot.build(:task, title: nil, content: nil)).not_to be_valid
   end
@@ -36,9 +40,9 @@ RSpec.describe Task, type: :model do
   end
 
   it '搜尋任務標題' do
-    task_one = FactoryBot.create(:task, title: 'TaskOne')
-    task_two = FactoryBot.create(:task, title: 'TaskTwo')
-    task_three = FactoryBot.create(:task, title: 'TaskThree')
+    task_one = FactoryBot.create(:task, title: 'TaskOne', user_id: @user.id)
+    task_two = FactoryBot.create(:task, title: 'TaskTwo', user_id: @user.id)
+    task_three = FactoryBot.create(:task, title: 'TaskThree', user_id: @user.id)
 
     @q = Task.ransack({title_cont: 'Task'})
     @tasks = @q.result.order(created_at: :desc)
