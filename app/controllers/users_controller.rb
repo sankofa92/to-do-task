@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  protect_from_forgery prepend: true
+
   def new
     @user = User.new
     

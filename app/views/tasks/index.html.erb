@@ -1,6 +1,6 @@
 <h2><%= t('common.task_list') %></h2>
 <div class="task-search text-center">
-  <%= render 'shared/task_search', query: @q %>
+  <%= render 'shared/task_search', query: @q if @user.tasks.present? %>
 </div>
-<%= render 'shared/task_list', tasks: @tasks %>
+<%= render 'shared/task_list', tasks: @tasks , user: @user %>
 
