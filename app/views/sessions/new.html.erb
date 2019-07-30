@@ -1,6 +1,6 @@
 <h3 class= "text-center"><%= t('users.login') %></h3>
 <div>
-  <%= simple_form_for(:session, url: 'login') do |form| %>
+  <%= simple_form_for(:session, url: login_path) do |form| %>
     <%= form.input :email, label: t('users.email') %>
     <%= form.input :password, label: t('users.password') %>
     <%= form.submit t('users.login'), class: 'btn btn-outline-info d-block m-auto' %>
