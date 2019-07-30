@@ -27,7 +27,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.user = User.find_by(id: 1)
+    @task.user = User.find_by(id: session[:user_id])
     if @task.save
       redirect_to root_path, notice: I18n.t('tasks.notice.create')
     else

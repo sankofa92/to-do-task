@@ -10,12 +10,24 @@
   </head>
 
   <body>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-link active badge badge-light"><%= link_to t("common.locale.zh-TW"), change_locale_path(locale: "zh-TW"), method: :post %></li>
-      <li class="nav-link active badge badge-light"><%= link_to t("common.locale.en"), change_locale_path(locale: "en"), method: :post %></li>
+    <ul class="navbar-nav ml-auto flex-row">
+      <nav class="col-6">
+        <li class="nav-link active badge badge-light"><%= link_to t("common.locale.zh-TW"), change_locale_path(locale: "zh-TW"), method: :post %></li>
+        <li class="nav-link active badge badge-light"><%= link_to t("common.locale.en"), change_locale_path(locale: "en"), method: :post %></li>
+      </nav>
+      <nav class="text-right col-6">
+        <% if session[:user_id] == nil %>
+          <li class="nav-link badge badge-light"><%= link_to t('users.signup'), signup_path %></li>
+          <li class="nav-link badge badge-light"><%= link_to t('users.login'), login_path %></li>
+        <% else %>
+          <li class="nav-link badge badge-light">Hi, <%= session[:user]['name'] %></li>
+          <li class="nav-link badge badge-light"><%= link_to t('users.logout'), logout_path %></li>
+        <% end %>
+      </nav>
     </ul>
     <div class="container">
       <p class="flash"><%= flash[:notice] %></p>
+      <%= flash[:alert] %>
       <%= yield %>
     </div>
   </body>
