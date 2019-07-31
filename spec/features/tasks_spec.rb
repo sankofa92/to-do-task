@@ -1,7 +1,7 @@
 require "rails_helper"
 require 'pry-rails'
 
-# Capybara.default_driver = :selenium_chrome
+Capybara.default_driver = :selenium_chrome
 
 RSpec.feature "tasks", type: :feature do
   
@@ -27,8 +27,12 @@ RSpec.feature "tasks", type: :feature do
 
   scenario '刪除任務' do
     visit root_path
-    binding.pry
-    expect { click_link I18n.t('common.destroy') }.to change(Task, :count).by(0)
+    # binding.pry
+    click_link I18n.t('common.destroy')
+    page.accept_alert
+    sleep 2
+    # expect { click_link I18n.t('common.destroy') }.to change(Task, :count).by(0)
+    expect{ Task }.to change{ Task.count }.by(0)
     expect(page).to have_text(I18n.t("tasks.notice.destroy"))
   end
 
@@ -50,7 +54,7 @@ RSpec.feature "tasks", type: :feature do
     select(I18n.t('tasks.priority.high', from: 'task[priority]'))
 
     click_button I18n.t('common.submit')
-
+    
     expect(page).to have_content(I18n.t('tasks.priority.high'))
     expect(page).to have_text(I18n.t("tasks.notice.update"))
   end
@@ -79,14 +83,18 @@ RSpec.feature "tasks", type: :feature do
     @later_task = FactoryBot.create(:task, :task_later, user_id: @user.id)
     visit root_path
     click_link I18n.t('tasks.end_at')
+    sleep 2
     tasks = page.all('.task-item')
     # binding.pry
+    
     expect(tasks[0]).to have_content(@earlier_task.title)
     expect(tasks[1]).to have_content(@task.title)
     expect(tasks[2]).to have_content(@later_task.title)
 
     click_link I18n.t('tasks.end_at')
+    sleep 2
     tasks = page.all('.task-item')
+    
     expect(tasks[0]).to have_content(@later_task.title)
     expect(tasks[1]).to have_content(@task.title)
     expect(tasks[2]).to have_content(@earlier_task.title)
@@ -105,6 +113,7 @@ RSpec.feature "tasks", type: :feature do
     click_link I18n.t('tasks.take')
     click_link I18n.t('tasks.status.doing')
     tasks = page.all('.task-item')
+    
     expect(tasks[0]).to have_content(@task.title)
     expect(tasks[0]).to have_content('doing')
   end
@@ -115,6 +124,7 @@ RSpec.feature "tasks", type: :feature do
     visit root_path
     click_link I18n.t('common.priority')
     tasks = page.all('.task-item')
+    
     # binding.pry
     expect(tasks[0]).to have_content(@high_task.title)
     expect(tasks[1]).to have_content(@medium_task.title)
@@ -122,6 +132,7 @@ RSpec.feature "tasks", type: :feature do
 
     click_link I18n.t('common.priority')
     tasks = page.all('.task-item')
+    
     expect(tasks[0]).to have_content(@task.title)
     expect(tasks[1]).to have_content(@medium_task.title)
     expect(tasks[2]).to have_content(@high_task.title)
