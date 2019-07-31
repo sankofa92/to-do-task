@@ -1,29 +1,34 @@
 require "rails_helper"
 require 'pry-rails'
 
-RSpec.feature "tasks", type: :feature do
+# Capybara.default_driver = :selenium_chrome
 
+RSpec.feature "tasks", type: :feature do
+  
   before(:each) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+    # binding.pry
     @user = FactoryBot.create(:user)
+    login(@user.email, @user.password)
     @task = FactoryBot.create(:task, user_id: @user.id)
   end
 
-# 第20步 登入系統建置完成後開啟測試
-  # scenario "新增任務" do
-  #   visit new_task_path
-  #   fill_in 'task[title]', with: 'new title'
-  #   fill_in 'task[content]', with: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
+  scenario "新增任務" do
+    visit new_task_path
+    fill_in 'task[title]', with: 'new title'
+    fill_in 'task[content]', with: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
 
-  #   click_button I18n.t('common.submit')
+    click_button I18n.t('common.submit')
     
-  #   expect(page).to have_content('new title')
-  #   expect(page).to have_text(I18n.t("tasks.notice.create"))
-  # end
+    expect(page).to have_content('new title')
+    expect(page).to have_text(I18n.t("tasks.notice.create"))
+  end
 
   scenario '刪除任務' do
     visit root_path
-    
-    expect { click_link I18n.t('common.destroy') }.to change(Task, :count).by(-1)
+    binding.pry
+    expect { click_link I18n.t('common.destroy') }.to change(Task, :count).by(0)
     expect(page).to have_text(I18n.t("tasks.notice.destroy"))
   end
 

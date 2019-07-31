@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Task, type: :model do
 
   before(:each) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
     @user = FactoryBot.create(:user)
   end
 
