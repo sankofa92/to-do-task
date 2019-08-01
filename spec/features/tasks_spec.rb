@@ -1,7 +1,7 @@
 require "rails_helper"
 require 'pry-rails'
 
-Capybara.default_driver = :selenium_chrome
+# Capybara.default_driver = :selenium_chrome
 
 RSpec.feature "tasks", type: :feature do
   
@@ -29,8 +29,8 @@ RSpec.feature "tasks", type: :feature do
     visit root_path
     # binding.pry
     click_link I18n.t('common.destroy')
-    page.accept_alert
-    sleep 1
+    # page.accept_alert
+    # sleep 1
     # expect { click_link I18n.t('common.destroy') }.to change(Task, :count).by(0)
     expect{ Task }.to change{ Task.count }.by(0)
     expect(page).to have_text(I18n.t("tasks.notice.destroy"))
@@ -83,7 +83,7 @@ RSpec.feature "tasks", type: :feature do
     @later_task = FactoryBot.create(:task, :task_later, user_id: @user.id)
     visit root_path
     click_link I18n.t('tasks.end_at')
-    sleep 1
+    # sleep 1
     tasks = page.all('.task-item')
     # binding.pry
     
@@ -92,7 +92,7 @@ RSpec.feature "tasks", type: :feature do
     expect(tasks[2]).to have_content(@later_task.title)
 
     click_link I18n.t('tasks.end_at')
-    sleep 1
+    # sleep 1
     tasks = page.all('.task-item')
     
     expect(tasks[0]).to have_content(@later_task.title)
@@ -112,7 +112,7 @@ RSpec.feature "tasks", type: :feature do
     visit root_path
     click_link I18n.t('tasks.take')
     click_link I18n.t('tasks.status.doing')
-    sleep 1
+    # sleep 1
     tasks = page.all('.task-item')
     
     expect(tasks[0]).to have_content(@task.title)
@@ -124,7 +124,7 @@ RSpec.feature "tasks", type: :feature do
     @high_task = FactoryBot.create(:task, :task_high, user_id: @user.id)
     visit root_path
     click_link I18n.t('common.priority')
-    sleep 1
+    # sleep 1
     tasks = page.all('.task-item')
     
     # binding.pry
@@ -133,7 +133,7 @@ RSpec.feature "tasks", type: :feature do
     expect(tasks[2]).to have_content(@task.title)
 
     click_link I18n.t('common.priority')
-    sleep 1
+    # sleep 1
     tasks = page.all('.task-item')
     
     expect(tasks[0]).to have_content(@task.title)

@@ -1,7 +1,7 @@
 require "rails_helper"
 require 'pry-rails'
 
-Capybara.default_driver = :selenium_chrome
+# Capybara.default_driver = :selenium_chrome
 
 RSpec.feature "users", type: :feature do
 
