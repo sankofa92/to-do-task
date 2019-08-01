@@ -4,7 +4,7 @@
     fill_in 'user[name]', with: name
     fill_in 'user[email]', with: email
     fill_in 'user[password]', with: password
-    fill_in 'user[password_cofirmation]', with: password
+    fill_in 'user[password_confirmation]', with: password
 
     click_button I18n.t("users.signup")
   end
