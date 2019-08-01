@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale
+  helper_method :current_user
  
   def change_locale
     set_locale

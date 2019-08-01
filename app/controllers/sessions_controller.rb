@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
     user = User.find_by(email: user_params[:email])
     if user && user.authenticate(user_params[:password])
       session[:user_id] = user.id
-      session[:user] = user
       
       redirect_to root_path
     else
@@ -16,8 +15,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
-    session[:user] = nil
+    reset_session
+    # session[:user_id] = nil
     
     redirect_to login_path
   end

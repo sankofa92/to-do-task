@@ -74,7 +74,7 @@ class TasksController < ApplicationController
   end
 
   def check_login
-    unless session[:user_id].present?
+    unless current_user.present?
       redirect_to login_path
     end
   end
