@@ -1,13 +1,13 @@
 class TasksController < ApplicationController
   before_action :check_login
-  before_action :set_user
+  # before_action :set_user
   before_action :find_task, only: [:show, :edit, :update, :destroy, :take, :drop]
 
   def index
-    if @user.tasks.empty?
-      @q = @user.tasks
+    if current_user.tasks.empty?
+      @q = current_user.tasks
     else
-      @q = @user.tasks.ransack(params[:q])
+      @q = current_user.tasks.ransack(params[:q])
       @tasks = @q.result.order(created_at: :desc).page(params[:page]).per(8)
     end
     
@@ -29,7 +29,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.user = @user
+    @task.user = current_user
     if @task.save
       redirect_to root_path, notice: I18n.t('tasks.notice.create')
     else
@@ -83,8 +83,8 @@ class TasksController < ApplicationController
     params.require(:task).permit(:title, :content, :end_at, :priority, :user_id)
   end
 
-  def set_user
-    @user = User.find_by(id: session[:user_id])
-  end
+  # def set_user
+  #   @user = User.find_by(id: session[:user_id])
+  # end
 
 end

@@ -6,8 +6,6 @@ Capybara.default_driver = :selenium_chrome
 RSpec.feature "users", type: :feature do
 
   before(:each) do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
     @user = FactoryBot.create(:user)
   end
 
@@ -31,13 +29,13 @@ RSpec.feature "users", type: :feature do
   end
 
   scenario '只能看到當前使用者的任務' do
-    @user_task = FactoryBot.create(:task, user_id: @user.id)
-    @other_user = FactoryBot.create(:user, :other_user)
-    @other_user_task = FactoryBot.create(:task, user_id: @other_user.id)
+    user_task = FactoryBot.create(:task, user_id: @user.id)
+    other_user = FactoryBot.create(:user, :other_user)
+    other_user_task = FactoryBot.create(:task, user_id: other_user.id)
     visit root_path
     login(@user.email, @user.password)
-
-    expect(page).to have_content(@user_task.title)
-    expect(page).to_not have_content(@other_user_task.title)
+    
+    expect(page).to have_content(user_task.title)
+    expect(page).to_not have_content(other_user_task.title)
   end
 end
