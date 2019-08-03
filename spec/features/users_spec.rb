@@ -34,8 +34,8 @@ RSpec.feature "users", type: :feature do
     other_user_task = FactoryBot.create(:task, user_id: other_user.id)
     visit root_path
     login(@user.email, @user.password)
-    
-    expect(page).to have_content(user_task.title)
+    # binding.pry
     expect(page).to_not have_content(other_user_task.title)
+    expect(page).to have_content(user_task.title)
   end
 end
