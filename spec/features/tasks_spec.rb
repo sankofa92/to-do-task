@@ -24,7 +24,6 @@ RSpec.feature "tasks", type: :feature do
 
   scenario '刪除任務' do
     visit root_path
-    # binding.pry
     click_link I18n.t('common.destroy')
  
     page.accept_alert
@@ -60,7 +59,7 @@ RSpec.feature "tasks", type: :feature do
     new_task = FactoryBot.create(:task, user_id: @user.id)
     visit root_path
     tasks = page.all('.task-item')
-    # binding.pry
+    
     expect(tasks[0]).to have_content(new_task.title)
     expect(tasks[1]).to have_content(@task.title)
   end
@@ -71,13 +70,15 @@ RSpec.feature "tasks", type: :feature do
     visit root_path
 
     click_link I18n.t('tasks.end_at')
+    expect(page).to have_selector('.task-item', count: 3)
     tasks = page.all('.task-item')
-    # binding.pry
+    
     expect(tasks[0]).to have_content(earlier_task.title)
     expect(tasks[1]).to have_content(@task.title)
     expect(tasks[2]).to have_content(later_task.title)
 
     click_link I18n.t('tasks.end_at')
+    expect(page).to have_selector('.task-item', count: 3)
     tasks = page.all('.task-item')
 
     expect(tasks[0]).to have_content(later_task.title)
@@ -97,6 +98,7 @@ RSpec.feature "tasks", type: :feature do
     visit root_path
     click_link I18n.t('tasks.take')
     click_link I18n.t('tasks.status.doing')
+    expect(page).to have_selector('.task-item', count: 1)
     
     expect(first('.task-item')).to have_content(@task.title)
     expect(first('.task-item')).to have_content('doing')
@@ -107,13 +109,15 @@ RSpec.feature "tasks", type: :feature do
     high_task = FactoryBot.create(:task, :task_high, user_id: @user.id)
     visit root_path
     click_link I18n.t('common.priority')
+    expect(page).to have_selector('.task-item', count: 3)
     tasks = page.all('.task-item')
-    # binding.pry
+    
     expect(tasks[0]).to have_content(high_task.title)
     expect(tasks[1]).to have_content(medium_task.title)
     expect(tasks[2]).to have_content(@task.title)
 
     click_link I18n.t('common.priority')
+    expect(page).to have_selector('.task-item', count: 3)
     tasks = page.all('.task-item')
 
     expect(tasks[0]).to have_content(@task.title)
