@@ -1,6 +1,6 @@
 <div class="task-sort text-center">
   <%= link_to t('tasks.new'), new_task_path, class: 'btn btn-lg btn-outline-primary m-3' %>
-  
+  <% if user.tasks.present? %>
   <div>
     <%= t('common.filter') %>
     <%= link_to t('tasks.all'), tasks_path %>
@@ -14,8 +14,10 @@
     <%= sort_link(@q, :end_at, t("tasks.end_at"), default_order: :asc) %>
     <%= sort_link(@q, :priority, t("common.priority"), default_order: :desc) %>
   </div>
+  <% end %>
 </div>
 
+<% if user.tasks.present? %>
 <div class="task-wrap row">
   <% tasks.each do |task| %>
   <div class="task-item col-xs-12 col-sm-6 col-md-4 col-lg-3">
@@ -45,3 +47,4 @@
     <%= paginate tasks, outer_window: 3 %> 
   </div>
 </div>
+<% end %>

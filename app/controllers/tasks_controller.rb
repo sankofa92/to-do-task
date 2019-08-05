@@ -1,12 +1,14 @@
 class TasksController < ApplicationController
+  before_action :check_login
+  # before_action :set_user
   before_action :find_task, only: [:show, :edit, :update, :destroy, :take, :drop]
 
   def index
-    @q = Task.ransack(params[:q])
-    @tasks = @q.result.order(created_at: :desc).page(params[:page]).per(8)
-
-    if Task.where(user_id = nil)
-      Task.update(user_id: 1)
+    if current_user.tasks.empty?
+      @q = current_user.tasks
+    else
+      @q = current_user.tasks.ransack(params[:q])
+      @tasks = @q.result.order(created_at: :desc).page(params[:page]).per(8)
     end
     
     # status filter
@@ -27,7 +29,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.user = User.find_by(id: 1)
+    @task.user = current_user
     if @task.save
       redirect_to root_path, notice: I18n.t('tasks.notice.create')
     else
@@ -71,7 +73,18 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: params[:id])
   end
 
+  def check_login
+    unless current_user.present?
+      redirect_to login_path
+    end
+  end
+
   def task_params
     params.require(:task).permit(:title, :content, :end_at, :priority, :user_id)
   end
+
+  # def set_user
+  #   @user = User.find_by(id: session[:user_id])
+  # end
+
 end

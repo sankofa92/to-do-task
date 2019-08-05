@@ -8,6 +8,8 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'factory_bot_rails'
 require 'aasm/rspec'
+require 'features/features_helper'
+require 'database_cleaner'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -34,6 +36,32 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+  config.include Capybara::DSL
+
+  config.before(:each, type: :feature) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  Capybara.register_driver :headless_chrome do |app|
+    capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+      chromeOptions: { args: %w(no-sandbox headless disable-gpu) }
+    )
+    client = Selenium::WebDriver::Remote::Http::Default.new
+    client.read_timeout = 120
+    profile = Selenium::WebDriver::Chrome::Profile.new
+    profile['intl.accept_languages'] = 'en'
+    Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: capabilities, http_client: client, profile: profile)
+  end
+
+  Capybara.configure do |config|
+    config.default_driver = :headless_chrome
+    config.javascript_driver = :headless_chrome
+    config.default_max_wait_time = 10 # seconds
+    config.default_host = "http://localhost" # localhost
+    config.server_port = 5566
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

@@ -1,29 +1,34 @@
 require "rails_helper"
 require 'pry-rails'
 
-RSpec.feature "tasks", type: :feature do
+Capybara.default_driver = :selenium_chrome
 
+RSpec.feature "tasks", type: :feature do
+  
   before(:each) do
     @user = FactoryBot.create(:user)
+    login(@user.email, @user.password)
     @task = FactoryBot.create(:task, user_id: @user.id)
   end
 
-# 第20步 登入系統建置完成後開啟測試
-  # scenario "新增任務" do
-  #   visit new_task_path
-  #   fill_in 'task[title]', with: 'new title'
-  #   fill_in 'task[content]', with: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
+  scenario "新增任務" do
+    visit new_task_path
+    fill_in 'task[title]', with: 'new title'
+    fill_in 'task[content]', with: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
 
-  #   click_button I18n.t('common.submit')
+    click_button I18n.t('common.submit')
     
-  #   expect(page).to have_content('new title')
-  #   expect(page).to have_text(I18n.t("tasks.notice.create"))
-  # end
+    expect(page).to have_content('new title')
+    expect(page).to have_text(I18n.t("tasks.notice.create"))
+  end
 
   scenario '刪除任務' do
     visit root_path
-    
-    expect { click_link I18n.t('common.destroy') }.to change(Task, :count).by(-1)
+    click_link I18n.t('common.destroy')
+ 
+    page.accept_alert
+ 
+    expect(page).to have_selector('.task-item', count: 0)
     expect(page).to have_text(I18n.t("tasks.notice.destroy"))
   end
 
@@ -45,81 +50,79 @@ RSpec.feature "tasks", type: :feature do
     select(I18n.t('tasks.priority.high', from: 'task[priority]'))
 
     click_button I18n.t('common.submit')
-
+    
     expect(page).to have_content(I18n.t('tasks.priority.high'))
     expect(page).to have_text(I18n.t("tasks.notice.update"))
   end
 
-  # scenario '設定任務目前的狀態' do
-  #   visit edit_task_path(@task)
-  #   fill_in 'task[status]', with: I18n.t('tasks.status.doing')
-
-  #   click_button I18n.t('common.submit')
-
-  #   expect(page).to have_content(I18n.t('tasks.status.doing'))
-  #   expect(page).to have_text(I18n.t("tasks.notice.update"))
-  # end
-
   scenario '任務依建立時間排序' do
-    @new_task = FactoryBot.create(:task, user_id: @user.id)
+    new_task = FactoryBot.create(:task, user_id: @user.id)
     visit root_path
     tasks = page.all('.task-item')
-    # binding.pry
-    expect(tasks[0]).to have_content(@new_task.title)
+    
+    expect(tasks[0]).to have_content(new_task.title)
     expect(tasks[1]).to have_content(@task.title)
   end
 
   scenario '任務依截止時間排序' do
-    @earlier_task = FactoryBot.create(:task, :task_earlier, user_id: @user.id)
-    @later_task = FactoryBot.create(:task, :task_later, user_id: @user.id)
+    earlier_task = FactoryBot.create(:task, :task_earlier, user_id: @user.id)
+    later_task = FactoryBot.create(:task, :task_later, user_id: @user.id)
     visit root_path
-    click_link I18n.t('tasks.end_at')
-    tasks = page.all('.task-item')
-    # binding.pry
-    expect(tasks[0]).to have_content(@earlier_task.title)
-    expect(tasks[1]).to have_content(@task.title)
-    expect(tasks[2]).to have_content(@later_task.title)
 
     click_link I18n.t('tasks.end_at')
+    expect(page).to have_selector('.task-item', count: 3)
     tasks = page.all('.task-item')
-    expect(tasks[0]).to have_content(@later_task.title)
+    
+    expect(tasks[0]).to have_content(earlier_task.title)
     expect(tasks[1]).to have_content(@task.title)
-    expect(tasks[2]).to have_content(@earlier_task.title)
+    expect(tasks[2]).to have_content(later_task.title)
+
+    click_link I18n.t('tasks.end_at')
+    expect(page).to have_selector('.task-item', count: 3)
+    tasks = page.all('.task-item')
+
+    expect(tasks[0]).to have_content(later_task.title)
+    expect(tasks[1]).to have_content(@task.title)
+    expect(tasks[2]).to have_content(earlier_task.title)
   end
 
   scenario '搜尋任務標題' do
     visit root_path
     fill_in 'q[title_cont]', with: @task.title
     click_button '搜尋'
-    tasks = page.all('.task-item')
-    expect(tasks[0]).to have_content(@task.title)
+    
+    expect(first('.task-item')).to have_content(@task.title)
   end
 
   scenario '依任務狀態篩選' do
     visit root_path
     click_link I18n.t('tasks.take')
     click_link I18n.t('tasks.status.doing')
-    tasks = page.all('.task-item')
-    expect(tasks[0]).to have_content(@task.title)
-    expect(tasks[0]).to have_content('doing')
+    expect(page).to have_selector('.task-item', count: 1)
+    
+    expect(first('.task-item')).to have_content(@task.title)
+    expect(first('.task-item')).to have_content('doing')
   end
 
   scenario '任務依優先順序排序' do
-    @medium_task = FactoryBot.create(:task, :task_medium, user_id: @user.id)
-    @high_task = FactoryBot.create(:task, :task_high, user_id: @user.id)
+    medium_task = FactoryBot.create(:task, :task_medium, user_id: @user.id)
+    high_task = FactoryBot.create(:task, :task_high, user_id: @user.id)
     visit root_path
     click_link I18n.t('common.priority')
+    expect(page).to have_selector('.task-item', count: 3)
     tasks = page.all('.task-item')
-    # binding.pry
-    expect(tasks[0]).to have_content(@high_task.title)
-    expect(tasks[1]).to have_content(@medium_task.title)
+    
+    expect(tasks[0]).to have_content(high_task.title)
+    expect(tasks[1]).to have_content(medium_task.title)
     expect(tasks[2]).to have_content(@task.title)
 
     click_link I18n.t('common.priority')
+    expect(page).to have_selector('.task-item', count: 3)
     tasks = page.all('.task-item')
+
     expect(tasks[0]).to have_content(@task.title)
-    expect(tasks[1]).to have_content(@medium_task.title)
-    expect(tasks[2]).to have_content(@high_task.title)
+    expect(tasks[1]).to have_content(medium_task.title)
+    expect(tasks[2]).to have_content(high_task.title)
   end
 end
 

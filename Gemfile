@@ -44,6 +44,7 @@ gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'rails-i18n', '~> 5.1', '>= 5.1.3'
 gem 'ransack', '~> 2.1', '>= 2.1.1'
+gem 'bcrypt', '~> 3.1', '>= 3.1.13'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -72,6 +73,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'database_cleaner', '~> 1.7'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
