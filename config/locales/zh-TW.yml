@@ -13,6 +13,7 @@ zh-TW:
     submit: '送出'
     priority: '優先順序'
     task_list: '任務列表'
+    user_list: '使用者列表'
     new_task: '新增任務'
     pending_task: '待處理任務'
     doing_task: '進行中任務'
@@ -29,6 +30,8 @@ zh-TW:
       login: '你已經登入了！'
   admin:
     title: '管理'
+    messages:
+      destroy: '確定要刪除%{user}嗎？'
   tags:
     title: '標籤'
     error:

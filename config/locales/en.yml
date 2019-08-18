@@ -12,6 +12,7 @@ en:
     submit: 'Submit'
     priority: 'Priority'
     task_list: 'Task List'
+    user_list: 'User List'
     new_task: 'New Task List'
     pending_task: 'Pending Task List'
     doing_task: 'Doing Task List'
@@ -28,6 +29,8 @@ en:
       login: 'You are already signed in'
   admin:
     title: 'Admin'
+    messages:
+      destroy: 'Are you sure to delete %{user}?'
   tags:
     title: 'Tag'
     error:
