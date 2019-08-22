@@ -17,6 +17,10 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def show
+    @tasks = @user.tasks.order(end_at: :asc)
+  end
+
   private
 
   def find_user
