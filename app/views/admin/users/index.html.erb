@@ -12,7 +12,7 @@
     <th scope='col'><%= t('common.destroy') %></th>
   </tr>
   <% @users.each do |user| %>
-  <tr>
+  <tr class='user-list'>
     <td><%= link_to user.name, admin_user_path(user) %></td>
     <td><%#= user.roles %></td>
     <td><%= user.email %></td>
