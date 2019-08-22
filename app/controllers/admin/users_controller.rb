@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update, :destrroy]
+  before_action :find_user, only: [:show, :edit, :update, :destroy]
   def index
     @users = User.order(created_at: :desc).page(params[:page]).per(10)
   end
@@ -27,6 +27,11 @@ class Admin::UsersController < ApplicationController
     else
       render :edit, alert: I18n.t('users.alert.update')
     end
+  end
+  
+  def destroy
+    @user.destroy
+    redirect_to admin_users_path, notice: I18n.t('users.alert.destroy')
   end
 
   private
