@@ -21,6 +21,8 @@ en:
     task_detail: 'Task Detail'
     order: 'Order'
     filter: 'Filter'
+    back: 'Back'
+    backend: 'Backend'
     messages:
       destroy: 'Are you sure to delete %{task}?'
       drop: 'Are you finished %{task}?'
@@ -72,7 +74,8 @@ en:
       title: "Title can't be blank！"
       content: "Content can't be blank！"
   users:
-    new: 'New user'
+    new: 'New User'
+    edit: 'Edit User'
     signup: 'Sign Up'
     login: 'Log In'
     logout: 'Log Out'

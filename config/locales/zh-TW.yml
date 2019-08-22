@@ -22,6 +22,8 @@ zh-TW:
     task_detail: '任務細節'
     order: '排序'
     filter: '篩選'
+    back: '回上一頁'
+    backend: '後台管理'
     messages:
       destroy: '確定要刪除%{task}嗎？'
       drop: '確定完成%{task}了嗎？'
@@ -74,6 +76,7 @@ zh-TW:
       content: '內文不能空白！'
   users:
     new: '新增使用者'
+    edit: '編輯使用者'
     signup: '註冊'
     login: '登入'
     logout: '登出'

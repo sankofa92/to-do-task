@@ -18,7 +18,15 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @tasks = @user.tasks.order(end_at: :asc)
+    @tasks = @user.tasks.order(end_at: :asc).page(params[:page]).per(10)
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to admin_user_path(@user), notice: I18n.t('users.notice.update')
+    else
+      render :edit, alert: I18n.t('users.alert.update')
+    end
   end
 
   private

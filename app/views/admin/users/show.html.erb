@@ -21,3 +21,8 @@
   </tr>
   <% end %>
 </table>
+
+<div class="col-12 mt-4 text-center">
+  <%= link_to t('common.back'), admin_users_path %>
+  <%= paginate @tasks, outer_window: 3 %> 
+</div>

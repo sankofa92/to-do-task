@@ -1,5 +1,5 @@
   <div>
-  <%= simple_form_for(user, url: admin_users_path) do |form| %>
+  <%= simple_form_for(user, url: url) do |form| %>
     <%= form.input :name, label: t('users.name') %>
     <%= form.input :email, label: t('users.email') %>
     <%= form.input :password, label: t('users.password') %>
