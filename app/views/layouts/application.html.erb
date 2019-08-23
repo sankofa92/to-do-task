@@ -20,7 +20,7 @@
           <li class="nav-link badge"><%= link_to t('users.signup'), signup_path %></li>
           <li class="nav-link badge"><%= link_to t('users.login'), login_path %></li>
         <% else %>
-          <li class="nav-link badge"><%= link_to t('common.backend'), admin_users_path %></li>
+          <li class="nav-link badge"><%= link_to t('common.backend'), admin_users_path if current_user.role == 'admin' %></li>
           <li class="nav-link badge">Hi, <%= current_user.name %></li>
           <li class="nav-link badge"><%= link_to t('users.logout'), logout_path, method: :delete %></li>
         <% end %>

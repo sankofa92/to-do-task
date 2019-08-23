@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  before_action :check_role
   before_action :find_user, only: [:show, :edit, :update, :destroy]
   def index
     @users = User.order(created_at: :desc).page(params[:page]).per(10)
@@ -42,6 +43,12 @@ class Admin::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def check_role
+    if current_user == nil || current_user.role != 'admin'
+      redirect_to root_path, notice: I18n.t('common.permit')
+    end
   end
 
 end

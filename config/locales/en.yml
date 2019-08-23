@@ -23,6 +23,7 @@ en:
     filter: 'Filter'
     back: 'Back'
     backend: 'Backend'
+    permit: 'Not allow! Insufficient permissions'
     messages:
       destroy: 'Are you sure to delete %{task}?'
       drop: 'Are you finished %{task}?'
@@ -69,7 +70,6 @@ en:
       create: 'Task was failed to create!'
       update: 'Task was failed to update!'
       destroy: 'Task was deleted!'
-      permit: 'Not allow!'
     error:
       title: "Title can't be blank！"
       content: "Content can't be blank！"
