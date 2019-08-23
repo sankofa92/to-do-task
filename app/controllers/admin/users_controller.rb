@@ -23,7 +23,10 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    if params[:role].present?
+      @user.update!(role: params[:role])
+      redirect_to admin_users_path, notice: I18n.t('users.notice.update')
+    elsif @user.update(user_params)
       redirect_to admin_user_path(@user), notice: I18n.t('users.notice.update')
     else
       render :edit, alert: I18n.t('users.alert.update')
@@ -42,7 +45,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role)
   end
 
   def check_role

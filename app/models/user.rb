@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_secure_password
+  has_secure_password(validations: false)
   has_many :tasks, dependent: :destroy
 
   validates :name, :email, presence: true

@@ -8,6 +8,7 @@ zh-TW:
     status: '狀態'
     check: '查看'
     edit: '編輯'
+    update: '更新'
     destroy: '刪除'
     back: '返回'
     submit: '送出'
