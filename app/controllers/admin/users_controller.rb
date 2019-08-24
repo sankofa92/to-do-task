@@ -24,7 +24,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     if params[:role].present?
-      @user.update!(role: params[:role])
+      @user.update(role: params[:role])
       redirect_to admin_users_path, notice: I18n.t('users.notice.update')
     elsif @user.update(user_params)
       redirect_to admin_user_path(@user), notice: I18n.t('users.notice.update')
@@ -34,8 +34,17 @@ class Admin::UsersController < ApplicationController
   end
   
   def destroy
-    @user.destroy
-    redirect_to admin_users_path, notice: I18n.t('users.alert.destroy')
+    if @user.destroy
+      if @user == current_user
+        session[:user_id] = nil
+        @current_user = nil
+        redirect_to login_path, notice: I18n.t('users.alert.destroy')
+      else
+        redirect_to admin_users_path, notice: I18n.t('users.alert.destroy')
+      end
+    else
+      redirect_back(fallback_location: admin_users_path, alert: I18n.t('common.alert.destroy'))
+    end
   end
 
   private
