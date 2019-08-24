@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
     expect(FactoryBot.build(:user, name: '1450', email: 'fff@example.com', password: '12345')).not_to be_valid
   end
   it '刪除使用者同時刪除其任務' do
-    user = FactoryBot.create(:user)
+    user = FactoryBot.create(:user, :other_user)
     task = FactoryBot.create(:task, user_id: user.id)
     
     expect{user.destroy}.to change{Task.count}.by(-1)
