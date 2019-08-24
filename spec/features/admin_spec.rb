@@ -65,4 +65,24 @@ RSpec.feature "admin", type: :feature do
     expect(find('table tr:nth-child(2)')).to have_content(task_first.title)
     expect(find('table tr:nth-child(3)')).to have_content(task_second.title)
   end
+
+  scenario '可調整使用者權限' do
+    other_user = FactoryBot.create(:user, :other_user)
+    visit admin_users_path
+    find('table tr:nth-child(2)').select(I18n.t('users.role.admin'), from: 'role')
+    find('table tr:nth-child(2)').click_button I18n.t('common.update')
+
+    expect(find('table tr:nth-child(2)')).to have_content(I18n.t('users.role.admin'))
+    expect(page).to have_text(I18n.t('users.notice.update'))
+  end
+
+  scenario '不能刪除最後一位管理者' do
+    other_user = FactoryBot.create(:user, :other_user)
+    visit admin_users_path
+    find('table tr:nth-child(3)').click_link I18n.t('common.destroy')
+    page.accept_alert
+
+    expect(page).to have_text(I18n.t('common.alert.destroy'))
+  end
+
 end
