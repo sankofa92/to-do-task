@@ -18,3 +18,11 @@
 //= require popper
 //= require select2
 //= require bootstrap
+
+$(document).on('turbolinks:load', function() {
+  $('#task_tag_items').select2({
+    theme: 'bootstrap',
+    tags: true,
+    tokenSeparators: [',', ' '],
+  })
+})
