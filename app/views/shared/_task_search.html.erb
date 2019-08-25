@@ -1,5 +1,7 @@
 <%= search_form_for query, html: { method: :get } do |form| %>
 <%= form.label t('tasks.title') %>
 <%= form.search_field :title_cont %>
+<%= form.label :tags_name_eq, t("tags.title") %>
+<%= form.select :tags_name_eq, options_for_select(Tag.order(:name).map{ |x| x.name }), include_blank: true %>
 <%= form.submit class: "btn btn-outline-success btn-sm" %>
 <% end %>
