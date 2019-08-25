@@ -89,7 +89,7 @@ RSpec.feature "tasks", type: :feature do
   scenario '搜尋任務標題' do
     visit root_path
     fill_in 'q[title_cont]', with: @task.title
-    click_button '搜尋'
+    click_button I18n.t('ransack.search')
     
     expect(first('.task-item')).to have_content(@task.title)
   end
@@ -123,6 +123,16 @@ RSpec.feature "tasks", type: :feature do
     expect(tasks[0]).to have_content(@task.title)
     expect(tasks[1]).to have_content(medium_task.title)
     expect(tasks[2]).to have_content(high_task.title)
+  end
+
+  scenario '任務可依標籤搜尋' do
+    @task.tags.create(name: 'test')
+    visit root_path
+    select 'test', from: I18n.t('tags.title')
+    click_button I18n.t('ransack.search')
+    tasks = page.all('.task-item')
+
+    expect(tasks[0]).to have_content(@task.title)
   end
 end
 
