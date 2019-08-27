@@ -1,10 +1,9 @@
-<h3 class= "text-center"><%= t('users.signup') %></h3>
-<div>
-  <%= simple_form_for(@user, url: signup_path) do |form| %>
+  <div>
+  <%= simple_form_for([:admin, user]) do |form| %>
     <%= form.input :name, label: t('users.name') %>
     <%= form.input :email, label: t('users.email') %>
     <%= form.input :password, label: t('users.password') %>
     <%= form.input :password_confirmation, label: t('users.password_confirmation') %>
-    <%= form.submit t('users.signup'), class: 'btn btn-outline-info d-block m-auto' %>
+    <%= form.submit t('common.submit'), class: 'btn btn-outline-info d-block m-auto' %>
   <% end %>
-</div>
+  </div>

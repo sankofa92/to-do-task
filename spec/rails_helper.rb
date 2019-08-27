@@ -38,7 +38,7 @@ end
 RSpec.configure do |config|
   config.include Capybara::DSL
 
-  config.before(:each, type: :feature) do
+  config.before(:each) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end
