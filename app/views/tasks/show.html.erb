@@ -1,11 +1,13 @@
 <h2><%= t('common.task_detail') %></h2>
-<div class="task-info">
+<div class="card shadow-sm text-center pt-3 mt-3">
   <h3><%= @task.title %></h3>
-  <p><%= t('users.name') %>： </p>
   <p><%= t('tasks.created_at') %>： <%= @task.created_at.to_date %></p>
   <p><%= t('tasks.end_at') %>： <%= @task.end_at %></p>
+</div>
+<div class="task-info my-3 px-5">
   <p><%= t('common.status') %>：<%= @task.status %></p>
   <p><%= t('common.priority') %>：<%= @task.priority %></p>
+  <p><%= t('tags.title') %>：<%= @task.tag_list %></p>
   <p><%= t('tasks.content') %>： <%= @task.content %></p>
-  <%= link_to t('common.back'), root_path %>
+  <%= link_to t('common.back'), root_path, class: 'd-block text-center my-5' %>
 </div>

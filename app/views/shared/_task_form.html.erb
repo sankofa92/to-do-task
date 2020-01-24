@@ -3,6 +3,7 @@
   <%= form.input :end_at, label: t('tasks.end_at') %>
   <%= form.label t('common.priority') %>
   <%= form.select :priority, options_for_select([['low','low'],['medium','medium'],['high','high']]) %>
+  <%= form.input :tag_items, as: :select, collection: Tag.order(:name), label_method: :name,value_method: :name, input_html: {multiple: true}, label: t('tags.title') %>
   <%= form.input :content, label: t('tasks.content') %>
   <%= form.submit t('common.submit'), class: 'btn btn-outline-info d-block m-auto' %>
 <% end %>

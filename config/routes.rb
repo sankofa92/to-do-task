@@ -20,4 +20,9 @@ Rails.application.routes.draw do
       get 'search', to: 'tasks#search'
     end
   end
+
+  namespace :admin do
+    resources :users
+  end
+  
 end

@@ -80,7 +80,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :end_at, :priority, :user_id)
+    params.require(:task).permit(:title, :content, :end_at, :priority, :user_id, { tag_items: [] })
   end
 
   # def set_user
