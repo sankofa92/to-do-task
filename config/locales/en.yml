@@ -7,11 +7,13 @@ en:
     title: 'Title'
     status: 'Status'
     edit: 'Edit'
+    update: 'Update'
     destroy: 'Destroy'
     back: 'Back'
     submit: 'Submit'
     priority: 'Priority'
     task_list: 'Task List'
+    user_list: 'User List'
     new_task: 'New Task List'
     pending_task: 'Pending Task List'
     doing_task: 'Doing Task List'
@@ -20,6 +22,9 @@ en:
     task_detail: 'Task Detail'
     order: 'Order'
     filter: 'Filter'
+    back: 'Back'
+    backend: 'Backend'
+    permit: 'Not allow! Insufficient permissions'
     messages:
       destroy: 'Are you sure to delete %{task}?'
       drop: 'Are you finished %{task}?'
@@ -28,6 +33,8 @@ en:
       login: 'You are already signed in'
   admin:
     title: 'Admin'
+    messages:
+      destroy: 'Are you sure to delete %{user}?'
   tags:
     title: 'Tag'
     error:
@@ -64,12 +71,12 @@ en:
       create: 'Task was failed to create!'
       update: 'Task was failed to update!'
       destroy: 'Task was deleted!'
-      permit: 'Not allow!'
     error:
       title: "Title can't be blank！"
       content: "Content can't be blank！"
   users:
-    new: 'New user'
+    new: 'New User'
+    edit: 'Edit User'
     signup: 'Sign Up'
     login: 'Log In'
     logout: 'Log Out'

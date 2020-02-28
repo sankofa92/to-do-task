@@ -8,11 +8,13 @@ zh-TW:
     status: '狀態'
     check: '查看'
     edit: '編輯'
+    update: '更新'
     destroy: '刪除'
     back: '返回'
     submit: '送出'
     priority: '優先順序'
     task_list: '任務列表'
+    user_list: '使用者列表'
     new_task: '新增任務'
     pending_task: '待處理任務'
     doing_task: '進行中任務'
@@ -21,6 +23,9 @@ zh-TW:
     task_detail: '任務細節'
     order: '排序'
     filter: '篩選'
+    back: '回上一頁'
+    backend: '後台管理'
+    permit: '權限不足，無法進入此頁!'
     messages:
       destroy: '確定要刪除%{task}嗎？'
       drop: '確定完成%{task}了嗎？'
@@ -29,6 +34,8 @@ zh-TW:
       login: '你已經登入了！'
   admin:
     title: '管理'
+    messages:
+      destroy: '確定要刪除%{user}嗎？'
   tags:
     title: '標籤'
     error:
@@ -65,12 +72,12 @@ zh-TW:
       update: '更新任務失敗！'
       create: '新增任務失敗！'
       destroy: '任務已刪除！'
-      permit: '不允許進入此頁!'
     error:
       title: '標題不能空白！'
       content: '內文不能空白！'
   users:
     new: '新增使用者'
+    edit: '編輯使用者'
     signup: '註冊'
     login: '登入'
     logout: '登出'
